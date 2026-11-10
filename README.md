@@ -130,12 +130,12 @@ npm run build
 npm start
 
 
-## 🚀 Deployment
+ 🚀 Deployment
 This portfolio is optimized for and deployed on Vercel. Every push to the main branch automatically builds and deploys the application.
 
 Live URL: https://aneejrs.vercel.app/
 
-## 👨‍💼 Author
+ 👨‍💼 Author
 Aneej R Suku
 
 Role: Frontend Web Developer
@@ -146,7 +146,7 @@ LinkedIn: Aneej R Suku
 
 
 
-## 📄 License
+ 📄 License
 This project is open source and available under the MIT License.
 
 Copyright (c) 2026 Aneej R Suku
