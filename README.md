@@ -109,21 +109,44 @@ portfolio/
 └── README.md
 
 ---
+## 🏗️ Production Build & Local Setup
+Clone the repository:
+
+Bash
+git clone [https://github.com/aneejrs/YOUR-REPO-NAME.git](https://github.com/aneejrs/new-portfolio-dwployment.git)
+cd portfolio
+Install dependencies:
+
+Bash
+npm install
+Run the development server:
+
+Bash
+npm run dev
+Create and test a production build:
+
+Bash
+npm run build
+npm start
+
+
+## 🚀 Deployment
+This portfolio is optimized for and deployed on Vercel. Every push to the main branch automatically builds and deploys the application.
+
+Live URL: https://aneejrs.vercel.app/
 
 ## 👨‍💼 Author
+Aneej R Suku
 
-**Aneej R Suku**
+Role: Frontend Web Developer
 
-- **Role:** Frontend Web Developer
-- **Email:** [aneejrs619@gmail.com](mailto:aneejrs619@gmail.com)
-- **LinkedIn:** [Aneej R Suku](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
-- **GitHub:** [@aneejrs](https://github.com/aneejrs)
+Email: aneejrs619@gmail.com
 
----
+LinkedIn: Aneej R Suku
+
+
 
 ## 📄 License
+This project is open source and available under the MIT License.
 
-This project is open source and available under the [MIT License](LICENSE).  
 Copyright (c) 2026 Aneej R Suku
-
----
