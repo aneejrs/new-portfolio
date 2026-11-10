@@ -103,3 +103,17 @@ portfolio/
 ├── next.config.ts
 ├── tsconfig.json
 └── README.md
+
+## 👨‍💼 Author
+
+**Aneej R Suku**
+
+- **Role:** Frontend Web Developer
+- **Email:** [aneejrs619@gmail.com](mailto:aneejrs619@gmail.com)
+- **LinkedIn:** [Aneej R Suku](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+Copyright (c) 2026 Aneej R Suku
+
