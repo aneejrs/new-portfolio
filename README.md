@@ -6,7 +6,7 @@ A modern, responsive, and professional developer portfolio built with Next.js, R
 
 ## 🌐 Live Demo
 
-[![Live Website] : https://aneejrs.vercel.app
+[![Live Website](https://img.shields.io/badge/Live_Demo-aneejrs.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://aneejrs.vercel.app/)
 
 ---
 
