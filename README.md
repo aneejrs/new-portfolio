@@ -142,7 +142,7 @@ Role: Frontend Web Developer
 
 Email: aneejrs619@gmail.com
 
-LinkedIn: Aneej R Suku
+LinkedIn: [Aneej R Suku](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
 
 
 
