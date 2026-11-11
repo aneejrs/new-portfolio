@@ -253,8 +253,8 @@ export default function Home() {
           </a>
           {/* Direct download link from public/ folder */}
           <a
-            href="/Aneej_R_SukuResume.pdf"
-            download="Aneej_R_SukuResume.pdf"
+            href="/Aneej_R_Suku_Developer_Resume.pdf"
+            download="Aneej_R_Suku_Developer_Resume.pdf"
             className={`font-bold px-8 py-4 rounded-lg transition border ${
               darkMode 
                 ? "bg-slate-900 border-slate-800 text-white hover:bg-slate-800" 
