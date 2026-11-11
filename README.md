@@ -192,9 +192,9 @@ Every push to the configured GitHub deployment branch can automatically trigger 
 Frontend Developer | React.js | Next.js
 
 - 📧 Email: [aneejrs619@gmail.com](mailto:aneejrs619@gmail.com)
-- 💼 LinkedIn: [linkedin.com/in/aneej-r-suku-ba6959217](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
-- 🐙 GitHub: [github.com/aneejrs](https://github.com/aneejrs)
-- 🌐 Portfolio: [aneejrs.vercel.app](https://aneejrs.vercel.app/)
+- 💼 LinkedIn: [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
+- 🐙 GitHub: [![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aneejrs)
+- 🌐 Portfolio: [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://aneej-r-suku.vercel.app/)
 
 ---
 
