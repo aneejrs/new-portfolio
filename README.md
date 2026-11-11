@@ -191,10 +191,10 @@ Every push to the configured GitHub deployment branch can automatically trigger 
 **Aneej R Suku**  
 Frontend Developer | React.js | Next.js
 
-- 📧 Email: [aneejrs619@gmail.com](mailto:aneejrs619@gmail.com)
-- 💼 LinkedIn: [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
-- 🐙 GitHub: [![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aneejrs)
-- 🌐 Portfolio: [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://aneej-r-suku.vercel.app/)
+- 📧 [![Email](https://img.shields.io/badge/Email-Direct_Mail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aneejrs619@gmail.com)
+- 💼  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aneej-r-suku-ba6959217/)
+- 🐙  [![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aneejrs)
+- 🌐  [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://aneej-r-suku.vercel.app/)
 
 ---
 
