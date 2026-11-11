@@ -85,12 +85,6 @@ I enjoy building responsive, scalable, and user-friendly web applications using 
 | 📩 Contact | Contact information, email, LinkedIn, and GitHub. |
 | 📄 Resume | Direct PDF resume download. |
 
-### Certifications
-
-- **Front End Development Internship** — Wynxio Technologies.
-- **Developer Essentials** — Kerala Blockchain Academy.
-- **DevOps and Cloud: The Future of Software Engineering** — Wynxio Technologies.
-
 ---
 
 ## 📁 Project Structure
