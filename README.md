@@ -129,13 +129,13 @@ Follow these steps to run the portfolio locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/aneejrs/new-portfolio-dwployment.git
+git clone https://github.com/aneejrs/new-portfolio.git
 ```
 
 ### 2. Navigate to the Project Directory
 
 ```bash
-cd new-portfolio-dwployment
+cd new-portfolio
 ```
 
 ### 3. Install Dependencies
