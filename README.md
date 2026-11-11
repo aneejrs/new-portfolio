@@ -11,7 +11,7 @@ This portfolio showcases my technical skills, professional experience, certifica
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://aneej-r-suku.vercel.app/)
 
-**Website:** (https://aneej-r-suku.vercel.app/)
+**Website:** https://aneej-r-suku.vercel.app/
 
 ---
 
