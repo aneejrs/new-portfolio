@@ -182,7 +182,7 @@ This portfolio is deployed using **Vercel**, providing optimized production host
 
 Every push to the configured GitHub deployment branch can automatically trigger a new deployment.
 
-**Live Website:** https://aneejrs.vercel.app/
+**Live Website:** (https://aneej-r-suku.vercel.app)
 
 ---
 
