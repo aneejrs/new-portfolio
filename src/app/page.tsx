@@ -24,6 +24,7 @@ export default function Home() {
     { name: "Sass", category: "Styling", level: "Advanced" },
     { name: "Bootstrap", category: "UI Framework", level: "Advanced" },
     { name: "Vercel", category: "Deployment", level: "Advanced" },
+    { name: "Tailwind CSS", category: "Styling", level: "Advanced" },
     { name: "Docker", category: "DevOps", level: "Intermediate" },
     { name: "Node.js", category: "Backend", level: "Intermediate" },
     { name: "MongoDB", category: "Database", level: "Intermediate" },
@@ -253,8 +254,8 @@ export default function Home() {
           </a>
           {/* Direct download link from public/ folder */}
           <a
-            href="/Aneej_R_Suku_Developer_Resume.pdf"
-            download="Aneej_R_Suku_Developer_Resume.pdf"
+            href="/Aneej_R_Suku__Developer_Resume.pdf"
+            download="Aneej_R_Suku__Developer_Resume.pdf"
             className={`font-bold px-8 py-4 rounded-lg transition border ${
               darkMode 
                 ? "bg-slate-900 border-slate-800 text-white hover:bg-slate-800" 
