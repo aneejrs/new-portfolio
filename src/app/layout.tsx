@@ -1,22 +1,26 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+});
 
 export const metadata: Metadata = {
-  title: 'Aneej R Suku | React & Next.js Frontend Developer Portfolio',
-  description: 'Portfolio of Aneej R Suku - Frontend Developer based in Kerala, specializing in React.js, Next.js, and modern web applications.',
-  icons: {
-    icon: '/icon.png', 
-  },
+  title: "Aneej R Suku | Frontend & UI Developer",
+  description: "React & Next.js Frontend Developer Portfolio",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="antialiased">{children}</body>
+    <html lang="en" className={jakarta.variable}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

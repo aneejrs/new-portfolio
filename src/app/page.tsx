@@ -1,12 +1,86 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, ExternalLink, Code, Layout, Cpu, Sun, Moon } from "lucide-react";
+import {
+  Mail,
+  ExternalLink,
+  Code,
+  Layout,
+  Cpu,
+  Sun,
+  Moon,
+  X,
+  Send,
+  CheckCircle2,
+  Globe,
+  Palette,
+  Terminal,
+  Layers,
+  Database,
+  ShieldCheck,
+  GitBranch,
+  Cloud,
+  Server,
+  Boxes,
+} from "lucide-react";
 import GridCanvas from "./components/GridCanvas";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("all");
   const [darkMode, setDarkMode] = useState(false);
+
+  // Contact Modal State
+  const [contactOpen, setContactOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const getSkillIcon = (name: string, category: string) => {
+    const key = name.toLowerCase();
+    if (
+      key.includes("html") ||
+      key.includes("css") ||
+      key.includes("tailwind") ||
+      key.includes("sass") ||
+      key.includes("bootstrap")
+    ) {
+      return <Palette className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("javascript") || key.includes("typescript")) {
+      return <Terminal className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("react") || key.includes("next")) {
+      return <Code className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("redux")) {
+      return <Layers className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("api")) {
+      return <Globe className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("jwt")) {
+      return <ShieldCheck className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("git")) {
+      return <GitBranch className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("vercel") || key.includes("docker")) {
+      return <Cloud className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("node")) {
+      return <Server className="w-4 h-4 text-orange-500" />;
+    }
+    if (key.includes("mongo")) {
+      return <Database className="w-4 h-4 text-orange-500" />;
+    }
+    if (category.toLowerCase().includes("ui")) {
+      return <Boxes className="w-4 h-4 text-orange-500" />;
+    }
+    return <Cpu className="w-4 h-4 text-orange-500" />;
+  };
 
   const skills = [
     { name: "HTML5", category: "Frontend", level: "Advanced" },
@@ -132,8 +206,33 @@ export default function Home() {
           (p) => p.category.toLowerCase() === activeTab.toLowerCase(),
         );
 
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(
+      `Portfolio Inquiry from ${formData.name}`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+    );
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=aneejrs619@gmail.com&su=${subject}&body=${body}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setContactOpen(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 1800);
+  };
+
   return (
-    <div className={`${darkMode ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900"} font-sans min-h-screen relative overflow-x-hidden selection:bg-orange-500 selection:text-white transition-colors duration-300`}>
+    <div
+      className={`${
+        darkMode ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900"
+      } tracking-[-0.015em] min-h-screen relative overflow-x-hidden selection:bg-orange-500 selection:text-white transition-colors duration-300`}
+    >
       {/* 42Square Interactive Canvas Dots Background */}
       <GridCanvas />
 
@@ -148,11 +247,19 @@ export default function Home() {
       </div>
 
       {/* Navbar */}
-      <nav className={`sticky top-0 z-50 ${darkMode ? "bg-slate-950/80 border-slate-800" : "bg-white/80 border-slate-100"} backdrop-blur-md border-b transition-colors duration-300`}>
+      <nav
+        className={`sticky top-0 z-50 ${
+          darkMode
+            ? "bg-slate-950/80 border-slate-800"
+            : "bg-white/80 border-slate-100"
+        } backdrop-blur-md border-b transition-colors duration-300`}
+      >
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <a
             href="#"
-            className={`text-2xl font-black tracking-tighter ${darkMode ? "text-white" : "text-slate-900"}`}
+            className={`text-2xl font-black tracking-tighter ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
           >
             aneej<span className="text-orange-500">.</span>
           </a>
@@ -166,7 +273,10 @@ export default function Home() {
             <a href="#skills" className="hover:text-orange-500 transition">
               Skills
             </a>
-            <a href="#certifications" className="hover:text-orange-500 transition">
+            <a
+              href="#certifications"
+              className="hover:text-orange-500 transition"
+            >
               Certifications
             </a>
             <a href="#projects" className="hover:text-orange-500 transition">
@@ -176,22 +286,31 @@ export default function Home() {
           <div className="flex items-center gap-3">
             {/* Dark/Light Theme Toggle Button */}
             <button
+              type="button"
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2.5 rounded-lg border ${
-                darkMode 
-                  ? "border-slate-800 bg-slate-900 text-orange-400 hover:bg-slate-800" 
+                darkMode
+                  ? "border-slate-800 bg-slate-900 text-orange-400 hover:bg-slate-800"
                   : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
               } transition`}
               aria-label="Toggle Theme"
             >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {darkMode ? (
+                <Sun className="w-4 h-4" />
+              ) : (
+                <Moon className="w-4 h-4" />
+              )}
             </button>
 
             <a
               href="https://github.com/aneejrs"
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 ${darkMode ? "text-slate-300 hover:text-white" : "text-slate-600 hover:text-slate-900"} transition`}
+              className={`p-2 ${
+                darkMode
+                  ? "text-slate-300 hover:text-white"
+                  : "text-slate-600 hover:text-slate-900"
+              } transition`}
               aria-label="GitHub"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -202,19 +321,24 @@ export default function Home() {
               href="https://www.linkedin.com/in/aneej-r-suku-ba6959217/"
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 ${darkMode ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"} transition`}
+              className={`p-2 ${
+                darkMode
+                  ? "text-slate-300 hover:text-blue-400"
+                  : "text-slate-600 hover:text-blue-600"
+              } transition`}
               aria-label="LinkedIn"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
-            <a
-              href="mailto:aneejrs619@gmail.com"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg text-sm transition shadow-sm hidden sm:block"
+            <button
+              type="button"
+              onClick={() => setContactOpen(true)}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg text-sm transition shadow-sm hidden sm:block cursor-pointer"
             >
               Contact Me
-            </a>
+            </button>
           </div>
         </div>
       </nav>
@@ -227,19 +351,31 @@ export default function Home() {
         <p className="text-sm font-bold text-orange-500 uppercase tracking-widest mb-4">
           Hello World,
         </p>
-        <h1 className={`text-5xl md:text-7xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"} tracking-tight leading-none mb-8`}>
+        <h1
+          className={`text-5xl md:text-7xl font-extrabold ${
+            darkMode ? "text-white" : "text-slate-900"
+          } tracking-tight leading-[1.05] mb-8`}
+        >
           Find the{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
             escape velocity
           </span>{" "}
           of your ideas
         </h1>
-        <p className={`text-xl ${darkMode ? "text-slate-300" : "text-slate-600"} max-w-3xl leading-relaxed mb-6`}>
-          I'm <strong>Aneej R Suku</strong>, a React & Next.js Frontend
+        <p
+          className={`text-xl ${
+            darkMode ? "text-slate-300" : "text-slate-600"
+          } max-w-3xl leading-relaxed mb-6`}
+        >
+          I&apos;m <strong>Aneej R Suku</strong>, a React &amp; Next.js Frontend
           Developer. I build high-performance, scalable web applications,
           responsive UIs, and full-stack solutions.
         </p>
-        <p className={`text-base ${darkMode ? "text-slate-400" : "text-slate-500"} max-w-3xl leading-relaxed mb-10`}>
+        <p
+          className={`text-base ${
+            darkMode ? "text-slate-400" : "text-slate-500"
+          } max-w-3xl leading-relaxed mb-10`}
+        >
           Bringing diverse professional experience across frontend development,
           business operations, data processing, and client relationship
           management.
@@ -252,13 +388,12 @@ export default function Home() {
           >
             View Projects
           </a>
-          {/* Direct download link from public/ folder */}
           <a
             href="/Aneej_R_Suku__Developer_Resume.pdf"
             download="Aneej_R_Suku__Developer_Resume.pdf"
             className={`font-bold px-8 py-4 rounded-lg transition border ${
-              darkMode 
-                ? "bg-slate-900 border-slate-800 text-white hover:bg-slate-800" 
+              darkMode
+                ? "bg-slate-900 border-slate-800 text-white hover:bg-slate-800"
                 : "bg-slate-100 border-slate-200 text-slate-900 hover:bg-slate-200"
             }`}
           >
@@ -267,32 +402,38 @@ export default function Home() {
         </div>
 
         {/* About Me Summary Card */}
-        <div className={`p-8 md:p-10 rounded-3xl border ${darkMode ? "bg-slate-900/90 border-slate-800 shadow-2xl" : "bg-white border-slate-200/80 shadow-lg"} relative overflow-hidden transition-colors duration-300`}>
+        <div
+          className={`p-8 md:p-10 rounded-3xl border ${
+            darkMode
+              ? "bg-slate-900/90 border-slate-800 shadow-2xl"
+              : "bg-white border-slate-200/80 shadow-lg"
+          } relative overflow-hidden transition-colors duration-300`}
+        >
           <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
-          <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-3">
-            About Me
-          </p>
-          <h3 className={`text-2xl md:text-3xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"} mb-6`}>
+
+          <h3
+            className={`text-2xl md:text-3xl font-extrabold ${
+              darkMode ? "text-white" : "text-slate-900"
+            } mb-6`}
+          >
             Turning ideas into useful products.
           </h3>
-          <p className={`${darkMode ? "text-slate-300" : "text-slate-600"} text-base md:text-lg leading-relaxed mb-6`}>
-            I'm a frontend developer passionate about creating modern,
-            responsive and intuitive web experiences. My primary focus is
-            React.js and Next.js, with experience building reusable components,
-            responsive interfaces, dashboards and API-driven applications.
-          </p>
-          <p className={`${darkMode ? "text-slate-300" : "text-slate-600"} text-base md:text-lg leading-relaxed mb-8`}>
-            I enjoy solving practical problems through clean code, thoughtful UI
-            and modern frontend technologies.
-          </p>
 
-          <div className={`grid md:grid-cols-3 gap-6 pt-6 border-t ${darkMode ? "border-slate-800" : "border-slate-100"}`}>
+          <div
+            className={`grid md:grid-cols-3 gap-6 pt-6 border-t ${
+              darkMode ? "border-slate-800" : "border-slate-100"
+            }`}
+          >
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-orange-500/10 text-orange-500">
                 <Code className="w-6 h-6" />
               </div>
               <div>
-                <h4 className={`font-bold ${darkMode ? "text-white" : "text-slate-900"} text-base mb-1`}>
+                <h4
+                  className={`font-bold ${
+                    darkMode ? "text-white" : "text-slate-900"
+                  } text-base mb-1`}
+                >
                   Clean Code
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -306,7 +447,11 @@ export default function Home() {
                 <Layout className="w-6 h-6" />
               </div>
               <div>
-                <h4 className={`font-bold ${darkMode ? "text-white" : "text-slate-900"} text-base mb-1`}>
+                <h4
+                  className={`font-bold ${
+                    darkMode ? "text-white" : "text-slate-900"
+                  } text-base mb-1`}
+                >
                   Modern UI
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -320,7 +465,11 @@ export default function Home() {
                 <Cpu className="w-6 h-6" />
               </div>
               <div>
-                <h4 className={`font-bold ${darkMode ? "text-white" : "text-slate-900"} text-base mb-1`}>
+                <h4
+                  className={`font-bold ${
+                    darkMode ? "text-white" : "text-slate-900"
+                  } text-base mb-1`}
+                >
                   Problem Solving
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -333,10 +482,22 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className={`relative z-10 border-y ${darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-100 bg-slate-50/50"} py-12 transition-colors duration-300`}>
+      <section
+        className={`relative z-10 border-y ${
+          darkMode
+            ? "border-slate-800 bg-slate-900/50"
+            : "border-slate-100 bg-slate-50/50"
+        } py-12 transition-colors duration-300`}
+      >
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className={`text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>5+</div>
+            <div
+              className={`text-4xl font-extrabold ${
+                darkMode ? "text-white" : "text-slate-900"
+              }`}
+            >
+              5+
+            </div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">
               Years Career Span
             </div>
@@ -348,13 +509,25 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <div className={`text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>4+</div>
+            <div
+              className={`text-4xl font-extrabold ${
+                darkMode ? "text-white" : "text-slate-900"
+              }`}
+            >
+              4+
+            </div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">
-              Years of Operational & Business Experience
+              Years of Operational &amp; Business Experience
             </div>
           </div>
           <div>
-            <div className={`text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>100%</div>
+            <div
+              className={`text-4xl font-extrabold ${
+                darkMode ? "text-white" : "text-slate-900"
+              }`}
+            >
+              100%
+            </div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">
               Quality Standards
             </div>
@@ -371,7 +544,11 @@ export default function Home() {
           <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">
             Career History
           </p>
-          <h2 className={`text-3xl md:text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>
+          <h2
+            className={`text-3xl md:text-4xl font-extrabold ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
             Professional Journey
           </h2>
         </div>
@@ -380,28 +557,50 @@ export default function Home() {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`relative p-8 rounded-2xl border ${darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200/80"} shadow-sm hover:shadow-md transition`}
+              className={`relative p-8 rounded-2xl border ${
+                darkMode
+                  ? "bg-slate-900 border-slate-800"
+                  : "bg-white border-slate-200/80"
+              } shadow-sm hover:shadow-md transition`}
             >
-              <span className={`absolute -left-[35px] md:-left-[51px] top-8 w-4 h-4 rounded-full bg-orange-500 border-4 ${darkMode ? "border-slate-950" : "border-white"} shadow`} />
+              <span
+                className={`absolute -left-[35px] md:-left-[51px] top-8 w-4 h-4 rounded-full bg-orange-500 border-4 ${
+                  darkMode ? "border-slate-950" : "border-white"
+                } shadow`}
+              />
 
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-3">
                 <div>
-                  <h3 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
+                  <h3
+                    className={`text-xl font-bold ${
+                      darkMode ? "text-white" : "text-slate-900"
+                    }`}
+                  >
                     {exp.role}
                   </h3>
                   <p className="text-orange-500 font-semibold text-sm mt-0.5">
                     {exp.company}{" "}
                     <span className="text-slate-400 font-normal">
-                      • {exp.location}
+                      - {exp.location}
                     </span>
                   </p>
                 </div>
-                <span className={`text-xs font-bold ${darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"} px-3 py-1 rounded-full mt-2 md:mt-0 w-fit`}>
+                <span
+                  className={`text-xs font-bold ${
+                    darkMode
+                      ? "bg-slate-800 text-slate-300"
+                      : "bg-slate-100 text-slate-600"
+                  } px-3 py-1 rounded-full mt-2 md:mt-0 w-fit`}
+                >
                   {exp.period}
                 </span>
               </div>
 
-              <p className={`${darkMode ? "text-slate-300" : "text-slate-600"} text-sm leading-relaxed mt-4`}>
+              <p
+                className={`${
+                  darkMode ? "text-slate-300" : "text-slate-600"
+                } text-sm leading-relaxed mt-4`}
+              >
                 {exp.desc}
               </p>
             </div>
@@ -409,17 +608,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills Section with Custom Icons */}
       <section
         id="skills"
-        className={`relative z-10 py-24 max-w-7xl mx-auto px-6 border-y ${darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-100 bg-slate-50/50"} transition-colors duration-300`}
+        className={`relative z-10 py-24 max-w-7xl mx-auto px-6 border-y ${
+          darkMode
+            ? "border-slate-800 bg-slate-900/50"
+            : "border-slate-100 bg-slate-50/50"
+        } transition-colors duration-300`}
       >
         <div className="mb-16">
           <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">
             Technical Proficiency
           </p>
-          <h2 className={`text-3xl md:text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>
-            Skills & Expertise
+          <h2
+            className={`text-3xl md:text-4xl font-extrabold ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
+            Skills &amp; Expertise
           </h2>
         </div>
 
@@ -427,19 +634,34 @@ export default function Home() {
           {skills.map((item, index) => (
             <div
               key={index}
-              className={`p-5 rounded-xl border ${darkMode ? "bg-slate-900 border-slate-800 hover:border-orange-500/50" : "bg-white border-slate-200/80 hover:border-orange-500/40"} hover:shadow-lg transition-all duration-300 flex flex-col justify-between`}
+              className={`p-5 rounded-xl border ${
+                darkMode
+                  ? "bg-slate-900 border-slate-800 hover:border-orange-500/50"
+                  : "bg-white border-slate-200/80 hover:border-orange-500/40"
+              } hover:shadow-lg transition-all duration-300 flex flex-col justify-between group`}
             >
               <div>
-                <span
-                  className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${
-                    item.level === "Advanced"
-                      ? "bg-orange-500/20 text-orange-400"
-                      : darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"
-                  }`}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="p-2 rounded-lg bg-orange-500/10 group-hover:scale-105 transition">
+                    {getSkillIcon(item.name, item.category)}
+                  </div>
+                  <span
+                    className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${
+                      item.level === "Advanced"
+                        ? "bg-orange-500/20 text-orange-400"
+                        : darkMode
+                          ? "bg-slate-800 text-slate-300"
+                          : "bg-slate-100 text-slate-600"
+                    }`}
+                  >
+                    {item.level}
+                  </span>
+                </div>
+                <h3
+                  className={`font-bold ${
+                    darkMode ? "text-white" : "text-slate-900"
+                  } text-base mt-3`}
                 >
-                  {item.level}
-                </span>
-                <h3 className={`font-bold ${darkMode ? "text-white" : "text-slate-900"} text-base mt-3`}>
                   {item.name}
                 </h3>
               </div>
@@ -460,7 +682,11 @@ export default function Home() {
           <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">
             Continuous Learning
           </p>
-          <h2 className={`text-3xl md:text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>
+          <h2
+            className={`text-3xl md:text-4xl font-extrabold ${
+              darkMode ? "text-white" : "text-slate-900"
+            }`}
+          >
             Certifications
           </h2>
           <p className="text-slate-400 text-sm mt-2 max-w-2xl">
@@ -473,19 +699,31 @@ export default function Home() {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className={`p-8 rounded-2xl border ${darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200/80"} hover:shadow-xl transition-all duration-300 flex flex-col justify-between group`}
+              className={`p-8 rounded-2xl border ${
+                darkMode
+                  ? "bg-slate-900 border-slate-800"
+                  : "bg-white border-slate-200/80"
+              } hover:shadow-xl transition-all duration-300 flex flex-col justify-between group`}
             >
               <div>
                 <span className="text-3xl font-black text-orange-500/40 group-hover:text-orange-500 transition">
                   {cert.number}
                 </span>
-                <h3 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"} mt-4 mb-2`}>
+                <h3
+                  className={`text-xl font-bold ${
+                    darkMode ? "text-white" : "text-slate-900"
+                  } mt-4 mb-2`}
+                >
                   {cert.title}
                 </h3>
                 <p className="text-xs font-bold text-orange-500 uppercase tracking-wider mb-4">
                   {cert.issuer}
                 </p>
-                <p className={`${darkMode ? "text-slate-300" : "text-slate-600"} text-sm leading-relaxed`}>
+                <p
+                  className={`${
+                    darkMode ? "text-slate-300" : "text-slate-600"
+                  } text-sm leading-relaxed`}
+                >
                   {cert.desc}
                 </p>
               </div>
@@ -497,27 +735,38 @@ export default function Home() {
       {/* Selected Works */}
       <section
         id="projects"
-        className={`relative z-10 py-24 max-w-7xl mx-auto px-6 border-t ${darkMode ? "border-slate-800 bg-slate-900/50" : "border-slate-100 bg-slate-50/50"} transition-colors duration-300`}
+        className={`relative z-10 py-24 max-w-7xl mx-auto px-6 border-t ${
+          darkMode
+            ? "border-slate-800 bg-slate-900/50"
+            : "border-slate-100 bg-slate-50/50"
+        } transition-colors duration-300`}
       >
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">
               Selected Works
             </p>
-            <h2 className={`text-3xl md:text-4xl font-extrabold ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <h2
+              className={`text-3xl md:text-4xl font-extrabold ${
+                darkMode ? "text-white" : "text-slate-900"
+              }`}
+            >
               Real-World Projects
             </h2>
           </div>
 
-          <div className="flex gap-2 mt-6 md:mt-0">
+          <div className="flex gap-2 mt-6 md:mt-0 flex-wrap">
             {["all", "fullstack", "corporate", "interactive"].map((tab) => (
               <button
                 key={tab}
+                type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase transition ${
+                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase transition cursor-pointer ${
                   activeTab === tab
                     ? "bg-orange-500 text-white"
-                    : darkMode ? "bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800" : "bg-white text-slate-600 hover:bg-slate-200 border border-slate-200/60"
+                    : darkMode
+                      ? "bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800"
+                      : "bg-white text-slate-600 hover:bg-slate-200 border border-slate-200/60"
                 }`}
               >
                 {tab}
@@ -530,23 +779,42 @@ export default function Home() {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className={`p-8 rounded-2xl border ${darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-200/80"} hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group`}
+              className={`p-8 rounded-2xl border ${
+                darkMode
+                  ? "bg-slate-900 border-slate-800"
+                  : "bg-white border-slate-200/80"
+              } hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group`}
             >
               <div>
                 <span className="text-xs font-bold text-orange-500 uppercase tracking-wider">
                   {project.category}
                 </span>
-                <h3 className={`text-xl font-bold ${darkMode ? "text-white" : "text-slate-900"} mt-2 mb-3 group-hover:text-orange-500 transition`}>
+                <h3
+                  className={`text-xl font-bold ${
+                    darkMode ? "text-white" : "text-slate-900"
+                  } mt-2 mb-3 group-hover:text-orange-500 transition`}
+                >
                   {project.title}
                 </h3>
-                <p className={`${darkMode ? "text-slate-300" : "text-slate-600"} text-sm leading-relaxed mb-6`}>
+                <p
+                  className={`${
+                    darkMode ? "text-slate-300" : "text-slate-600"
+                  } text-sm leading-relaxed mb-6`}
+                >
                   {project.desc}
                 </p>
               </div>
               <div>
                 <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-400 mb-6">
                   {project.tags.map((t, i) => (
-                    <span key={i} className={`${darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"} px-3 py-1 rounded-md`}>
+                    <span
+                      key={i}
+                      className={`${
+                        darkMode
+                          ? "bg-slate-800 text-slate-300"
+                          : "bg-slate-100 text-slate-600"
+                      } px-3 py-1 rounded-md`}
+                    >
                       {t}
                     </span>
                   ))}
@@ -555,7 +823,11 @@ export default function Home() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 font-bold text-sm ${darkMode ? "text-white hover:text-orange-400" : "text-slate-900 hover:text-orange-500"} transition`}
+                  className={`inline-flex items-center gap-2 font-bold text-sm ${
+                    darkMode
+                      ? "text-white hover:text-orange-400"
+                      : "text-slate-900 hover:text-orange-500"
+                  } transition`}
                 >
                   View Live Website <ExternalLink className="w-4 h-4" />
                 </a>
@@ -566,13 +838,23 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className={`relative z-10 py-12 border-t ${darkMode ? "border-slate-800 bg-slate-950 text-slate-400" : "border-slate-100 bg-white text-slate-500"} text-center text-sm transition-colors duration-300`}>
-        <div className="flex justify-center gap-6 mb-4">
+      <footer
+        className={`relative z-10 py-12 border-t ${
+          darkMode
+            ? "border-slate-800 bg-slate-950 text-slate-400"
+            : "border-slate-100 bg-white text-slate-500"
+        } text-center text-sm transition-colors duration-300`}
+      >
+        <div className="flex justify-center gap-6 mb-4 items-center">
           <a
             href="https://github.com/aneejrs"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${darkMode ? "text-slate-400 hover:text-white" : "text-slate-400 hover:text-slate-900"} transition`}
+            className={`${
+              darkMode
+                ? "text-slate-400 hover:text-white"
+                : "text-slate-400 hover:text-slate-900"
+            } transition`}
             aria-label="GitHub"
           >
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -590,17 +872,136 @@ export default function Home() {
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
             </svg>
           </a>
-          <a
-            href="mailto:aneejrs619@gmail.com"
-            className="text-slate-400 hover:text-orange-500 transition"
-            aria-label="Email"
+          <button
+            type="button"
+            onClick={() => setContactOpen(true)}
+            className="text-slate-400 hover:text-orange-500 transition cursor-pointer"
+            aria-label="Email Contact"
           >
             <Mail className="w-5 h-5" />
-          </a>
+          </button>
         </div>
-        <p className={`font-bold ${darkMode ? "text-white" : "text-slate-900"} text-base mb-1`}>Don't Panic</p>
+        <p
+          className={`font-bold ${
+            darkMode ? "text-white" : "text-slate-900"
+          } text-base mb-1`}
+        >
+          Don&apos;t Panic
+        </p>
         <p>© 2026 Aneej R Suku • All rights reserved</p>
       </footer>
+
+      {/* Working Contact Modal */}
+      {contactOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div
+            className={`w-full max-w-md rounded-2xl border p-6 md:p-8 shadow-2xl relative ${
+              darkMode
+                ? "bg-slate-900 border-slate-800 text-white"
+                : "bg-white border-slate-200 text-slate-900"
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => setContactOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-orange-500 transition cursor-pointer"
+              aria-label="Close Contact Modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {submitted ? (
+              <div className="py-8 text-center">
+                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
+                <h3 className="text-xl font-bold mb-1">Opening Gmail Draft</h3>
+                <p className="text-sm text-slate-400">
+                  Your message to aneejrs619@gmail.com is ready.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-2xl font-extrabold mb-1">Get in Touch</h3>
+                <p className="text-sm text-slate-400 mb-6">
+                  Send a message directly to{" "}
+                  <span className="text-orange-500 font-semibold">
+                    aneejrs619@gmail.com
+                  </span>
+                </p>
+
+                <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      placeholder="name"
+                      className={`w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:border-orange-500 ${
+                        darkMode
+                          ? "bg-slate-950 border-slate-800 text-white"
+                          : "bg-slate-50 border-slate-200 text-slate-900"
+                      }`}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                      Your Email
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      placeholder="you@example.com"
+                      className={`w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:border-orange-500 ${
+                        darkMode
+                          ? "bg-slate-950 border-slate-800 text-white"
+                          : "bg-slate-50 border-slate-200 text-slate-900"
+                      }`}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                      Message
+                    </label>
+                    <textarea
+                      rows={4}
+                      required
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                      placeholder="Tell me about your project or UI developer opportunity..."
+                      className={`w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:border-orange-500 resize-none ${
+                        darkMode
+                          ? "bg-slate-950 border-slate-800 text-white"
+                          : "bg-slate-50 border-slate-200 text-slate-900"
+                      }`}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                    Send via Gmail
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
